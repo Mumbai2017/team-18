@@ -1,6 +1,6 @@
 <?php
 require_once './config.php';
-
+session_start();
 $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
 $pass = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
 $password = md5($pass);
