@@ -1,5 +1,6 @@
 package team18.jpmc.ceque_app;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -75,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
 
                         //Displaying the output as a toast
                         Toast.makeText(MainActivity.this, output, Toast.LENGTH_LONG).show();
+
+                        Intent in = new Intent(MainActivity.this,PreviousDetails.class);
+                        startActivity(in);
 
                     }
 
