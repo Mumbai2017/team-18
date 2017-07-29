@@ -29,7 +29,8 @@
         <activity android:name=".SelectTopic" />
         <activity android:name=".SelectUnit" />
         <activity android:name=".SelectUnit1" />
-        <activity android:name=".NewUnitSelect"></activity>
+        <activity android:name=".NewUnitSelect" />
+        <activity android:name=".UploadVideo"></activity>
     </application>
 
 </manifest>

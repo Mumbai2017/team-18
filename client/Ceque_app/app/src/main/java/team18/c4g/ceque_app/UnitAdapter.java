@@ -62,6 +62,7 @@ public class UnitAdapter extends RecyclerView.Adapter<UnitAdapter.UnitHolder> {
             //Toast.makeText(view.getContext(), "Clicked:" + unitlist.get(getAdapterPosition()).getUnitName(), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(view.getContext(), SelectTopic.class);
             intent.putExtra("topicid", unitlist.get(getAdapterPosition()).getId());
+            view.getContext().startActivity(intent);
         }
     }
 }

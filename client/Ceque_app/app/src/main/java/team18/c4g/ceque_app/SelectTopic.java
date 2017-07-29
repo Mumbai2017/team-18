@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -39,18 +40,21 @@ public class SelectTopic extends AppCompatActivity {
         super.onStart();
         recyclerView = (RecyclerView)findViewById(R.id.topic_recycler_view);
         linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
         Call<List<Topics>> call = apiInterface.getAllTopics(topicid);
         call.enqueue(new Callback<List<Topics>>() {
             @Override
             public void onResponse(Call<List<Topics>> call, Response<List<Topics>> response) {
-                
+                Toast.makeText(getApplicationContext(), "topics:" + response.body().get(0).getTopicName(), Toast.LENGTH_LONG).show();
+                topicsAdapter = new TopicsAdapter(response.body());
+                recyclerView.setAdapter(topicsAdapter);
             }
 
             @Override
             public void onFailure(Call<List<Topics>> call, Throwable t) {
-
+                Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
             }
         });
     }
