@@ -8,5 +8,5 @@
 			array_push($subject_values,$row);
 		}
 	}
-	echo json_encode(array("all_subjects"=>$subject_values));
+	echo json_encode($subject_values);
 ?>
