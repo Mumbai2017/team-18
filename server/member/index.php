@@ -1,5 +1,10 @@
 <?php 
 require '../functions.php';
+session_start();
+if (!checkLogin()) {
+    header("location: ../index.php?error=Please login");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,8 +16,11 @@ require '../functions.php';
         <link rel="stylesheet" href="../css/styles.css">
     </head>
     <body>
-        <br>
+        <div style="float: left; margin: 10px; padding: 10px 20px; background: blue; border-radius: 5px;"><a style="color: white;" href="index.php">Home</a></div>
+        <div style="float: right; margin: 10px; padding: 10px 20px; background: red; border-radius: 5px;"><a style="color: white;" href="logout.php">Logout</a></div>
+        <div class="clearfix"></div>
         <div class="container">
+            <div class="logo"><img src="../images/logo.png"></div>
             <div class="bodyContainer" align="center">
             <?php 
             if(isset($_GET['success'])) {

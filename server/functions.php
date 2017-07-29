@@ -1,5 +1,13 @@
 <?php
 
+function checkLogin() {
+   if(isset($_SESSION['type'])) {
+        return true;
+    } else {
+        return false;
+    } 
+}
+
 function checkAdmin() {
     if($_SESSION['type'] == 7) {
         return true;
