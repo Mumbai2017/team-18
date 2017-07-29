@@ -77,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
                         //Displaying the output as a toast
                         Toast.makeText(MainActivity.this, output, Toast.LENGTH_LONG).show();
 
-                        Intent in = new Intent(MainActivity.this,PreviousDetails.class);
-                        startActivity(in);
+                       // Intent in = new Intent(MainActivity.this,PreviousDetails.class);
+                       // startActivity(in);
 
                     }
 
