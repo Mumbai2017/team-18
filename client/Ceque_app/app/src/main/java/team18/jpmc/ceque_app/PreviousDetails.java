@@ -92,18 +92,13 @@ public class PreviousDetails extends AppCompatActivity {
 
         //Traversing through the whole list to get all the names
         for(i=0; i<person.size(); i++) {
-            //Storing names to string array
+
             items[i] = String.valueOf(person.get(i).getId());
-
             final Button b = new Button(this);
-
-            Toast.makeText(this," "+items[i],Toast.LENGTH_SHORT).show();
-
             b.setText("L E S S O N - P L A N:" + items[i]);
             b.setId(i);
 
             LinearLayout ll = (LinearLayout) findViewById(R.id.activity_previous_details);
-
             ll.addView(b);
 
             b.setOnClickListener(new View.OnClickListener() {
@@ -112,10 +107,7 @@ public class PreviousDetails extends AppCompatActivity {
 
                     int pos = b.getId();
                     e.putString("id" , String.valueOf(pos));
-
                     e.apply();
-
-
                     Intent in = new Intent(PreviousDetails.this, LVDetails.class);
                     startActivity(in);
                 }
