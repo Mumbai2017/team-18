@@ -1,6 +1,8 @@
 <?php 
 require '../functions.php';
+require '../config.php';
 session_start();
+$conn = mysqli_connect($dbConfig['dbhost'],$dbConfig['dbuser'],$dbConfig['dbpass'],$dbConfig['dbname']);
 if (!checkLogin()) {
     header("location: ../index.php?error=Please login");
     exit();
@@ -46,6 +48,12 @@ if (!checkLogin()) {
             ?>
                 <a href="list.php?action=lp"><div class="lpButton listbtn">List My Lesson Plans</div></a>
                 <a href="list.php?action=videos"><div class="videoButton listbtn">List My Videos</div></a>
+                <br>
+                <h3>Stats</h3>
+                <br>
+                <div class="statsLeft">Submitted Videos </div><div class="statsRight"><?php echo getNumberOfVideos($conn, $_SESSION['user_id']); ?></div>
+                <div class="clearfix"></div><br>
+                <div class="statsLeft">Submitted Plans  </div><div class="statsRight"><?php echo getNumberOfLP($conn, $_SESSION['user_id']); ?></div>
             </div>
         </div>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

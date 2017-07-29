@@ -176,3 +176,27 @@ input[type="submit"] {
     font-size: 18px;
     font-weight: 300;
 }
+
+.statsLeft {
+    border: 1px solid #0077c2;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width:80%;
+    float: left;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.statsRight {
+    border: 1px solid #0077c2;
+    background: #0077c2;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width:20%;
+    float:right;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: 300;
+    color: #fff;
+}
