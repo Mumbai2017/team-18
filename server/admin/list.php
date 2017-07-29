@@ -32,6 +32,7 @@ if ( $action == "lp") {
                 $feedBackGiven .= '<div class="listLPShow showData">
                         <div class="header">'.date("d/m/Y H:i:s", $timestamp).'</div>
                         <div class="body">
+                            <div class="img"><a href="'.$imageUrl.'" target="_blank"><img src="'.$imageUrl.'"></a></div>
                             <div class="desc">'.$description.'</div>
                             <div class="otherData">Topic Name : '.$topic_name.'<br>Unit Name : '.$unit_name.'<br>Subject Name : '.$sub_name.'</div>
                         </div>

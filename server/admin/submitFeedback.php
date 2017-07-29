@@ -51,6 +51,11 @@ if(isset($_POST['desc'])) {
                 }
             }
             ?>
+                <?php 
+                $imageUrl = getImageURL($conn, $id);
+                if( $imageUrl != "") { 
+                    getOcr($imageUrl);
+                } ?>
                 <form method="post">
                     <input type="hidden" value="<?php echo $id; ?>" name="id">
                     <textarea name="desc" placeholder="Enter Description"></textarea>
@@ -64,7 +69,7 @@ if(isset($_POST['desc'])) {
                     <input type="submit" value="Submit Score">
                 </form>
                 <?php } ?>
-                <a href="list.php"><div class="goBack">Go Back</div></a>
+                <a href="list.php?action=lp"><div class="goBack">Go Back</div></a>
             </div>
         </div>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
