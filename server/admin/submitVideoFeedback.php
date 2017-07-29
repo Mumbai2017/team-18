@@ -16,7 +16,6 @@ if(isset($_POST['desc'])) {
     $msg = filter_input(INPUT_POST, "desc", FILTER_SANITIZE_STRING);
     $timepoint = filter_input(INPUT_POST, "timepoint", FILTER_SANITIZE_STRING);
     $sql = "INSERT INTO feedback (type,t_id,msg,timepoint,timestamp,s_type) VALUES (2,".$id.",'".$msg."',".$timepoint.",'".time()."',".$_SESSION['type'].")";
-    $conn = mysqli_connect($dbConfig['dbhost'],$dbConfig['dbuser'],$dbConfig['dbpass'],$dbConfig['dbname']);
     if ($conn->query($sql) === TRUE) {
         header('location: submitVideoFeedback.php?lp='.$id.'&success=Feedback Submitted Successfully');
         exit();

@@ -11,7 +11,12 @@ if(isset($_POST['message'])) {
     
     $sql = "INSERT INTO feedback (type,t_id,msg,timestamp,s_type) VALUES (".$type.",".$t_id.",'".$msg."','".time()."',".$_SESSION['type'].")";
     if ($conn->query($sql) === TRUE) {
-        header('location: viewFeedback.php?lp='.$t_id.'&success=Feedback Submitted Successfully');
-        exit();
+        if($type == 2) {
+            header('location: viewVideosFeedback.php?lp='.$t_id.'&success=Feedback Submitted Successfully');
+            exit();
+        } else {
+            header('location: viewFeedback.php?lp='.$t_id.'&success=Feedback Submitted Successfully');
+            exit();
+        }
     }
 }

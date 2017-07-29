@@ -56,12 +56,11 @@ if(isset($_POST['desc'])) {
                     <textarea name="desc" placeholder="Enter Description"></textarea>
                     <input type="submit" value="Submit Feedback">
                 </form>
-                <?php if(checkScore($conn, $id, 1) != 0) { ?>
+                <?php if(checkScore($conn, $id, 1) == 0) { ?>
                 <form method="post" action="submitScore.php">
                     <input type="hidden" value="<?php echo $id; ?>" name="id">
                     <input type="text" name="score" placeholder="Enter Score">
                     <input type="hidden" name="type" value="1">
-                    <input type="file" name="audio" accept="audio/*;capture=microphone">
                     <input type="submit" value="Submit Score">
                 </form>
                 <?php } ?>
