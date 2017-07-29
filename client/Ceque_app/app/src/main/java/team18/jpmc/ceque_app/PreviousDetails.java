@@ -85,21 +85,30 @@ public class PreviousDetails extends AppCompatActivity {
         String[] items = new String[person.size()];
         final TextView[] myTextViews = new TextView[person.size()]; // create an empty array;
         //Traversing through the whole list to get all the names
-        for(int i=0; i<person.size(); i++){
+        for(int i=0; i<person.size(); i++) {
             //Storing names to string array
             items[i] = String.valueOf(person.get(i).getId());
             detail = detail + items[i];
             final Button b = new Button(this);
 
-           b.setText("L E S S O N - P L A N:" + items[i]);
+            b.setText("L E S S O N - P L A N:" + items[i]);
 
-            LinearLayout ll = (LinearLayout)findViewById(R.id.activity_previous_details);
+            LinearLayout ll = (LinearLayout) findViewById(R.id.activity_previous_details);
 
             ll.addView(b);
 
+            b.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent in = new Intent(PreviousDetails.this, LVDetails.class);
+
+                    startActivity(in);
+                }
+            });
+
         }
 
-        Toast.makeText(PreviousDetails.this," "+detail,Toast.LENGTH_SHORT).show();
+
 
 
     }
