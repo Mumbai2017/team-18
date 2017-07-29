@@ -79,3 +79,10 @@ function checkScore($conn, $id, $type) {
     $row = mysqli_fetch_assoc($result);
     return $row['score'];
 }
+
+function getYoutubeURL($conn, $id) {
+    $query = "SELECT youtube_id FROM videos WHERE id=".$id;
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+    return $row['youtube_id'];
+}

@@ -29,9 +29,6 @@ if ( $id != "" ) {
                             <a href="viewVideosFeedback.php?lp='.$id.'"><div class="submitFeedbackBtn">View Feedback</div></a>
                         </div>
                     </div><br>';
-            
-            
-            
         }
     }
     $feedBackGiven .= '<div class="feedbacks"><br><h4>Feedbacks</h4><br>';
@@ -45,7 +42,7 @@ if ( $id != "" ) {
             if($row['s_type'] == 1) {
                 $feedBackGiven .= '<div style="float: right; text-align: right; background: activecaption;" class="message">'.$row['msg'].'</div>';
             } else {
-                $feedBackGiven .= '<div style="float: left; text-align: left; background: bisque;" class="message"><span onclick="player.seekTo('.$timepoint.');">'.$timepoint.'</span>    '.$row['msg'].'</div>';
+                $feedBackGiven .= '<div style="float: left; text-align: left; background: bisque;" class="message">(<span style="cursor: pointer;" onclick="player.seekTo('.$timepoint.'); player.pauseVideo();">'.(round($timepoint/60,2)).":".(round($timepoint%60,2)).'</span>)    '.$row['msg'].'</div>';
             }
         }
     }
@@ -73,7 +70,6 @@ if ( $id != "" ) {
                 height: '390',
                 width: '640',
                 videoId: '<?php echo $youtube; ?>',
-                ;
                 events: {
                     'onReady': onPlayerReady,
                     'onStateChange': onPlayerStateChange
