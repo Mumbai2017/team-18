@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.MediaController;
+import android.widget.Spinner;
 import android.widget.VideoView;
 
 import java.io.IOException;
@@ -18,13 +20,18 @@ public class MainActivity extends AppCompatActivity {
     static final int REQUEST_VIDEO_CAPTURE = 1;
     private static final int PICK_FROM_GALLERY=1;
     VideoView videoresult;
+    MediaController mediaC;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button b1 = (Button) findViewById(R.id.upload);
         Button b2 = (Button) findViewById(R.id.browse);
+        Spinner s1=(Spinner) findViewById(R.id.subjectspin);
+        Spinner s2=(Spinner) findViewById(R.id.unitspin);
+        Spinner s3=(Spinner) findViewById(R.id.topicspin);
         videoresult = (VideoView) findViewById(R.id.videoupload);
+        mediaC= new MediaController(this);
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,12 +68,17 @@ public void videoviewer(){
         if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
             Uri videoUri = data.getData();
             videoresult.setVideoURI(videoUri);
+            videoresult.setMediaController(mediaC);
+            mediaC.setAnchorView(videoresult);
             videoresult.start();
+
             if (resultCode != RESULT_OK) return;
 
             if (requestCode == PICK_FROM_GALLERY) {
                 Uri mVideoURI = data.getData();
                 videoresult.setVideoURI(mVideoURI);
+                videoresult.setMediaController(mediaC);
+                mediaC.setAnchorView(videoresult);
                 videoresult.start();
             }
 
