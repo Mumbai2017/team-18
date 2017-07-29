@@ -1,5 +1,6 @@
 <?php
 require '../config.php';
+require '../functions.php';
 if(checkAdmin() && checkReviewer()) {
     header("location: index.php?error=Not Authorised");
     exit();

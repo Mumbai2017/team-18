@@ -7,7 +7,7 @@ $password = md5($pass);
 
 $conn = mysqli_connect($dbConfig['dbhost'],$dbConfig['dbuser'],$dbConfig['dbpass'],$dbConfig['dbname']);
 
-$sql = "SELECT `password`,`type` FROM `users`";
+$sql = "SELECT `password`,`type`,`id` FROM `users` WHERE username = '".$username."'";
 $result = $conn->query($sql);
 $error = true;
 if ($result->num_rows > 0) {
@@ -16,6 +16,7 @@ if ($result->num_rows > 0) {
             $error = false;
             $_SESSION['user'] = $username;
             $_SESSION['type'] = $row['type'];
+            $_SESSION['user_id'] = $row['id'];
         }
     }
 } else {
@@ -23,10 +24,13 @@ if ($result->num_rows > 0) {
 }
 
 if ( $error ) {
-    header("location: index.php?error=Please check details".$pass);
+    header("location: index.php?error=Please check details");
+    exit();
+} else if ( $_SESSION['type'] == 1 ) {
+    header("location: member/index.php?success=Successfully Logged in");
     exit();
 } else {
-    header("location: member/index.php?success=Successfully Logged in");
+    header("location: admin/index.php?success=Successfully Logged in");
     exit();
 }
 

@@ -2,16 +2,17 @@
 require '../functions.php';
 require_once '../config.php';
 session_start();
-if(!checkLogin()) {
+if(checkAdmin() && checkReviewer()) {
     header("location: ../index.php?error=Not Authorised");
     exit();
 }
+$teachers = "";
 $conn = mysqli_connect($dbConfig['dbhost'],$dbConfig['dbuser'],$dbConfig['dbpass'],$dbConfig['dbname']);
 $feedBackGiven = "";
 $feedBackNotGiven = "";
 $action = filter_input(INPUT_GET, "action", FILTER_SANITIZE_STRING);
 if ( $action == "lp") {
-    $sql = "SELECT * FROM `lesson_plan` WHERE user_id = ".$_SESSION['user_id'];
+    $sql = "SELECT * FROM `lesson_plan`";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
@@ -35,7 +36,8 @@ if ( $action == "lp") {
                             <div class="otherData">Topic Name : '.$topic_name.'<br>Unit Name : '.$unit_name.'<br>Subject Name : '.$sub_name.'</div>
                         </div>
                         <div class="footer">
-                            <a href="viewFeedback.php?lp='.$id.'"><div class="submitFeedbackBtn">View Feedback</div></a>
+                            Score : '.$score.'
+                            <br><a href="submitFeedback.php?lp='.$id.'"><div class="submitFeedbackBtn">Submit More Feedback</div></a>
                         </div>
                     </div><br>';
             } else {
@@ -46,14 +48,31 @@ if ( $action == "lp") {
                             <div class="otherData">Topic Name : '.$topic_name.'<br>Unit Name : '.$unit_name.'<br>Subject Name : '.$sub_name.'</div>
                         </div>
                         <div class="footer">
-                            <div class="submitFeedbackBtn">Awaiting Feedback</div>
+                            <a href="submitFeedback.php?lp='.$id.'"><div class="submitFeedbackBtn">Submit Feedback</div></a>
                         </div>
                     </div><br>';
             }
         }
     }
+} else if ( $action == "teachers" && $_SESSION['type'] == 7 ) {
+    $sql = "SELECT * FROM `users` WHERE type = 1";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $username = $row['username'];       
+            $phone_no = $row['phone_no'];
+            $loc_lang = $row['loc_lang'];
+            $loc_lat = $row['loc_lat'];
+            $teachers .= '<div class="listLPShow showData">
+                        <div class="header">'.$username.' - '.$phone_no.'</div>
+                        <div class="footer">
+                            <a href="https://www.google.co.in/maps/place/'.$loc_lat.', '.$loc_lang.'" target="_blank"><div class="submitFeedbackBtn">Show Location</div></a>
+                        </div>
+                    </div><br>';
+        }
+    }
 } else if ( $action == "videos" ) {
-    $sql = "SELECT * FROM `videos` WHERE user_id = ".$_SESSION['user_id'];
+    $sql = "SELECT * FROM `videos`";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
@@ -70,7 +89,8 @@ if ( $action == "lp") {
                             <div class="otherData"><a href="view.php?lp='.$lp.'"><div class="viewLessionPlanBtn">View Lession Plan</div></a></div>
                         </div>
                         <div class="footer">
-                            <a href="viewVideosFeedback.php?lp='.$id.'"><div class="submitFeedbackBtn">View Feedback</div></a>
+                            Score : '.$score.'
+                            <a href="submitVideoFeedback.php?lp='.$id.'"><div class="submitFeedbackBtn">Submit More Feedback</div></a>
                         </div>
                     </div><br>';
             } else {
@@ -81,7 +101,7 @@ if ( $action == "lp") {
                             <div class="otherData"><a href="view.php?lp='.$lp.'"><div class="viewLessionPlanBtn">View Lession Plan</div></a></div>
                         </div>
                         <div class="footer">
-                            <div class="submitFeedbackBtn">Awaiting Feedback</div>
+                            <a href="submitVideoFeedback.php?lp='.$id.'"><div class="submitFeedbackBtn">Submit Feedback</div></a>
                         </div>
                     </div><br>';
             }

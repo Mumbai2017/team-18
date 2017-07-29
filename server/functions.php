@@ -1,5 +1,13 @@
 <?php
 
+function checkLogin() {
+   if(isset($_SESSION['type'])) {
+        return true;
+    } else {
+        return false;
+    } 
+}
+
 function checkAdmin() {
     if($_SESSION['type'] == 7) {
         return true;
@@ -62,10 +70,11 @@ function getUnitID($conn, $t_id) {
 }
 
 function checkScore($conn, $id, $type) {
-    if ($type==1)
+    if ($type==1) {
         $query = "SELECT score FROM lession_plans WHERE id=".$id;
-    else
+    } else {
         $query = "SELECT score FROM videos WHERE id=".$id;
+    }
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($result);
     return $row['score'];

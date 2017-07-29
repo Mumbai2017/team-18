@@ -2,6 +2,8 @@
 require '../functions.php';
 require '../config.php';
 session_start();
+$conn = mysqli_connect($dbConfig['dbhost'],$dbConfig['dbuser'],$dbConfig['dbpass'],$dbConfig['dbname']);
+    
 if(isset($_GET['lp'])) {
     $id = filter_input(INPUT_GET, "lp", FILTER_SANITIZE_STRING);
 }
@@ -31,8 +33,12 @@ if(isset($_POST['desc'])) {
         <link rel="stylesheet" href="../css/styles.css">
     </head>
     <body>
+        <div style="float: left; margin: 10px; padding: 10px 20px; background: blue; border-radius: 5px;"><a style="color: white;" href="index.php">Home</a></div>
+        <div style="float: right; margin: 10px; padding: 10px 20px; background: red; border-radius: 5px;"><a style="color: white;" href="logout.php">Logout</a></div>
+        <div class="clearfix"></div>
         <br>
         <div class="container">
+            <div class="logo"><img src="../images/logo.png"></div>
             <div class="bodyContainer" align="center">
             <?php 
             if(isset($_GET['success'])) {
@@ -93,7 +99,7 @@ if(isset($_POST['desc'])) {
                     <textarea name="desc" placeholder="Enter Description" onclick="addYoutube()"></textarea>
                     <input type="submit" value="Submit Feedback">
                 </form>
-                <?php if(checkScore($conn, $id, 2) != 0) { ?>
+                <?php if(checkScore($conn, $id, 2) == 0) { ?>
                 <form method="post" action="submitScore.php">
                     <input type="hidden" value="<?php echo $id; ?>" name="id">
                     <input type="text" name="score" placeholder="Enter Score">

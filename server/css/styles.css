@@ -28,6 +28,15 @@ html, body {
     width: 300px;
     max-width: 90%;
     text-align: center;
+    margin: 0 auto;
+}
+
+.logo img {
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+    width: 300px;
+    margin: 50px 0px;
 }
 
 .alert {
@@ -153,4 +162,17 @@ input[type="submit"] {
 #player {
     max-width: 100%;
     height: auto;
+}
+
+.feedbacks {
+    width: 100%;
+}
+
+.feedbacks .message {
+    width: 80%;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 21px;
+    font-weight: 300;
 }
