@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+session_start();
 if(isset($_SESSION['user'])) {
     header("location: member/index.php");
     exit();
@@ -15,21 +16,33 @@ if(isset($_SESSION['user'])) {
     </head>
     <body>
         <div class="container">
-            <div class="logo"></div>
+            <div class="logo"><img src="images/logo.png"></div>
             <form method="post" action="login.php"> 
                 <div class="login" align="center">
-        <?php 
-        if(isset($_GET['error'])) {
-            $error = filter_input(INPUT_GET, "error", FILTER_SANITIZE_STRING);
-            if ($error != "") {
+                <?php 
+                if(isset($_GET['error'])) {
+                    $error = filter_input(INPUT_GET, "error", FILTER_SANITIZE_STRING);
+                    if ($error != "") {
+                        ?>
+                    <div class="alert alert-danger">
+                        <strong>Error!</strong> <?php echo $error; ?>
+                    </div>
+                        <?php
+                    }
+                }
                 ?>
-            <div class="alert alert-danger">
-                <strong>Error!</strong> <?php echo $error; ?>
-            </div>
-                <?php
-            }
-        }
-        ?>
+                <?php 
+                if(isset($_GET['success'])) {
+                    $error = filter_input(INPUT_GET, "success", FILTER_SANITIZE_STRING);
+                    if ($error != "") {
+                        ?>
+                    <div class="alert alert-success">
+                        <strong>Success!</strong> <?php echo $error; ?>
+                    </div>
+                        <?php
+                    }
+                }
+                ?>
                     <input type="text" placeholder="Enter your Username" name="username"><br>
                     <input type="password" placeholder="Enter your Password" name="password"><br>
                     <input type="submit" value="Login">

@@ -23,7 +23,7 @@ if ($result->num_rows > 0) {
 }
 
 if ( $error ) {
-    header("location: index.php?error=Please check details".$pass);
+    header("location: index.php?error=Please check details");
     exit();
 } else {
     header("location: member/index.php?success=Successfully Logged in");
