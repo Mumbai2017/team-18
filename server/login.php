@@ -1,6 +1,6 @@
 <?php
 require_once './config.php';
-
+session_start();
 $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
 $pass = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
 $password = md5($pass);
@@ -23,7 +23,7 @@ if ($result->num_rows > 0) {
 }
 
 if ( $error ) {
-    header("location: index.php?error=Please check details".$pass);
+    header("location: index.php?error=Please check details");
     exit();
 } else {
     header("location: member/index.php?success=Successfully Logged in");
