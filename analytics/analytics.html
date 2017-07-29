@@ -1,0 +1,119 @@
+<html>
+<head>
+<title>
+	CFG-analytics
+</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+<script type="text/javascript" src="users_map.js"></script>
+
+<style type="text/css">
+#map {
+        height: 70%;
+        width: 70%;
+      }
+	#header {
+		font-family: sans-serif;
+		font-size: 40px;
+	}
+	#chart-title {
+		font-family: sans-serif;
+		font-size: 30px;	
+	}
+</style>
+
+</head>
+
+<body>
+
+	<div>
+		<p id="header">Teacher ID: 1342</p>
+	</div>
+
+	<br>
+	<br>
+
+	<div style="width: 70%;">
+		<p id="chart-title">Lesson-Plan Performance</p>
+		<canvas id="barchart_subject" ></canvas>
+	</div>
+
+	<br>
+	
+	<div style="width: 70%;">
+		<p id="chart-title">Video Performance</p>
+		<canvas id="linechart_subject" ></canvas>
+	</div>
+
+	<br>
+
+	<!-- <div>
+	<p id="chart-title">Users by Location</p>
+		<div id="map"></div>
+	</div> -->
+
+	<!-- LINE CHART -->
+	<script>
+	var ctx = document.getElementById('linechart_subject').getContext('2d');
+var myChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['13th', '14th', '15th', '16th', '17th', '18th', '19th'],
+    datasets: [{
+      label: 'history',
+      data: [5, 6, 7, 6, 8, 9, 9],
+      backgroundColor: "rgba(255, 111, 0, 0.74)"
+    }, {
+      label: 'science',
+      data: [5, 6, 7, 7, 8, 9, 10],
+      backgroundColor: "rgba(63, 81, 181, 0.74)"
+    }, {
+    	label: 'maths',
+    	data: [6,7,6,8,9,9,9],
+    	backgroundColor: "rgba(0, 188, 212, 0.74)"
+    }]
+  }
+});
+</script>
+	<!-- LINE CHART ENDS -->
+
+
+	<!-- LINE CHART -->
+	<script>
+	var ctx = document.getElementById('barchart_subject').getContext('2d');
+var myChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['13th', '14th', '15th', '16th', '17th', '18th', '19th'],
+    datasets: [{
+      label: 'history',
+      data: [5, 6, 7, 6, 8, 9, 9],
+      backgroundColor: "rgba(255, 111, 0, 0.74)"
+    }, {
+      label: 'science',
+
+      data: [6,7,6,8,9,9,9],
+      backgroundColor: "rgba(63, 81, 181, 0.74)"
+    }, {
+    	label: 'maths',
+    	data: [5, 6, 7, 7, 8, 9, 10],
+    	backgroundColor: "rgba(0, 188, 212, 0.74)"
+    }
+    ]
+  }
+});
+</script>
+	<!-- LINE CHART ENDS -->
+
+	<!-- MAPS TO TRACK LOCATION --> 
+
+	
+
+	<!-- MAP ENDS HERE -->
+
+
+
+
+</body>
+
+</html>
