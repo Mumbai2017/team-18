@@ -48,6 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/upload"
         android:layout_centerHorizontal="true"
+        android:onClick="upLoad2Server"
         android:text="SUBMIT" />
 
     <Spinner

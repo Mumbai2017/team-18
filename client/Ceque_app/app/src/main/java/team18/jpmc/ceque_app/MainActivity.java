@@ -24,7 +24,16 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,6 +43,7 @@ import static android.R.attr.data;
 public class MainActivity extends AppCompatActivity {
     static final int REQUEST_VIDEO_CAPTURE = 1;
     private static final int PICK_FROM_GALLERY=1;
+    private static final int SELECT_VIDEO = 1;
     VideoView videoresult;
     MediaController mediaC;
     @Override
@@ -42,17 +52,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Button b1 = (Button) findViewById(R.id.upload);
         Button b2 = (Button) findViewById(R.id.browse);
+        Button b3 = (Button) findViewById(R.id.submit);
         Spinner s1=(Spinner) findViewById(R.id.subjectspin);
         Spinner s2=(Spinner) findViewById(R.id.unitspin);
         Spinner s3=(Spinner) findViewById(R.id.topicspin);
         videoresult = (VideoView) findViewById(R.id.videoupload);
         mediaC= new MediaController(this);
-        s1.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                fetchData1();
-            }
-        });
+
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +77,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(Intent.createChooser(intent, "Complete action using"),PICK_FROM_GALLERY);
             }
         })  ;
-    }
+
+}
 
 
 public void videoviewer(){
@@ -105,27 +112,6 @@ public void videoviewer(){
         }
 
     }
-public void fetchData1(){
-    RequestQueue queue = Volley.newRequestQueue(this); // this = context
-    String url = "http://cfg.hphost.in/apis/getAllSubjects.php";
-    StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-            new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                   Log.d("today",response);
 
-
-
-                }
-            },
-            new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    // error
-                    Log.d("Error.Response", "error");
-                }
-            }
-    );
 
 }
-    }
