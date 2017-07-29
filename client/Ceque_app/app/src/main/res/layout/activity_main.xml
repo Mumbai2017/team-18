@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="team18.jpmc.ceque_app.MainActivity">
+
+    <VideoView
+        android:id="@+id/videoupload"
+        android:layout_width="390dp"
+        android:layout_height="200dp"
+        android:layout_above="@+id/submit"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteY="0dp" />
 
     <Button
         android:id="@+id/upload"
@@ -13,7 +25,10 @@
         android:onClick="videoviewer()"
         android:text="UPLOAD"
         tools:layout_editor_absoluteX="251dp"
-        tools:layout_editor_absoluteY="423dp" />
+        tools:layout_editor_absoluteY="423dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:id="@+id/browse"
@@ -22,14 +37,72 @@
         android:onClick="onClickBrowseImage()"
         android:text="BROWSE"
         tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="423dp" />
+        tools:layout_editor_absoluteY="423dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-    <VideoView
-        android:id="@+id/videoupload"
-        android:layout_width="390dp"
-        android:layout_height="382dp"
-        android:layout_marginRight="0dp"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="0dp" />
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/upload"
+        android:layout_centerHorizontal="true"
+        android:text="SUBMIT" />
 
-</LinearLayout>
+    <Spinner
+        android:id="@+id/subjectspin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:id="@+id/unitspin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="13dp" />
+
+    <Spinner
+        android:id="@+id/topicspin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/videoupload"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="39dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Subject" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/subjectspin"
+        android:layout_marginTop="14dp"
+        android:text="Unit" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/topicspin"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="Topic" />
+
+</RelativeLayout>
