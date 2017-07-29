@@ -118,8 +118,12 @@ if ( $action == "lp") {
         <link rel="stylesheet" href="../css/styles.css">
     </head>
     <body>
+        <div style="float: left; margin: 10px; padding: 10px 20px; background: blue; border-radius: 5px;"><a style="color: white;" href="index.php">Home</a></div>
+        <div style="float: right; margin: 10px; padding: 10px 20px; background: red; border-radius: 5px;"><a style="color: white;" href="logout.php">Logout</a></div>
+        <div class="clearfix"></div>
         <br>
         <div class="container">
+            <div class="logo"><img src="../images/logo.png"></div>
             <div class="bodyContainer" align="center">
                 <?php if ( $action == "lp") { ?>
                 <?php if ($feedBackNotGiven != "") {
