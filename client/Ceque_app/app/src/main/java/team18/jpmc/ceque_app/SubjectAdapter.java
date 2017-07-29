@@ -8,7 +8,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import team18.jpmc.ceque_app.retrofit_model.AllSubject;
+import team18.jpmc.ceque_app.retrofit_client.Example;
+import team18.jpmc.ceque_app.retrofit_model.Subjects;
 
 /**
  * Created by Soundwave on 29-Jul-17.
@@ -16,10 +17,12 @@ import team18.jpmc.ceque_app.retrofit_model.AllSubject;
 
 public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHolder> {
 
-    List<AllSubject> subjectList;
+    List<Subjects> subjectList;
+    List<Example> list;
 
-    public SubjectAdapter(List<AllSubject> subjectList){
+    public SubjectAdapter(List<Subjects> subjectList){
         this.subjectList = subjectList;
+        //this.list = subjectList;
     }
 
     @Override
@@ -33,12 +36,15 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.text.setText(subjectList.get(position).getAllSubjects().get(position).getSubName());
+        //holder.text.setText(subjectList.get(position).getAllSubjects().get(position).getSubName());
+        //holder.text.setText(list.get(position).getName());
+        holder.text.setText(subjectList.get(position).getSubName());
     }
 
     @Override
     public int getItemCount() {
         return subjectList.size();
+        //return list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
