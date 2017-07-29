@@ -14,7 +14,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import team18.c4g.ceque_app.retrofit_client.ApiClient;
 import team18.c4g.ceque_app.retrofit_client.ApiInterface;
-import team18.c4g.ceque_app.retrofit_model.AllSubject;
 import team18.c4g.ceque_app.retrofit_model.Subjects;
 
 public class SelectSubjectActivity extends AppCompatActivity {
@@ -22,7 +21,6 @@ public class SelectSubjectActivity extends AppCompatActivity {
     Retrofit retrofit;
     SubjectAdapter subjectAdapter;
     LinearLayoutManager linearLayoutManager;
-    List<AllSubject> subjects;
     ApiInterface apiInterface;
 
     @Override
@@ -55,7 +53,7 @@ public class SelectSubjectActivity extends AppCompatActivity {
             public void onFailure(Call<List<Subjects>> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Failed:" + t.getMessage(), Toast.LENGTH_LONG).show();
             }
-        }); 
+        });
 
     }
 }

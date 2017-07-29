@@ -1,5 +1,6 @@
 package team18.c4g.ceque_app;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +9,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import team18.c4g.ceque_app.retrofit_client.Example;
 import team18.c4g.ceque_app.retrofit_model.Subjects;
 
 /
@@ -18,7 +18,6 @@ import team18.c4g.ceque_app.retrofit_model.Subjects;
 public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHolder> {
 
     List<Subjects> subjectList;
-    List<Example> list;
 
     public SubjectAdapter(List<Subjects> subjectList){
         this.subjectList = subjectList;
@@ -47,11 +46,39 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
         //return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView text;
         public ViewHolder(View itemView) {
             super(itemView);
              text = (TextView)itemView.findViewById(R.id.item);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(view.getContext(), SelectUnit.class);
+            String unitid = subjectList.get(getAdapterPosition()).getId();
+            /*ArrayList<String> unitname = new ArrayList<>();
+            switch (unitid){
+                case "1":
+                    unitname.add("Fractions");
+                    unitname.add("Ratio");
+                    unitname.add("Proportions");
+                break;
+                case "2":
+                    unitname.add("Light");
+                    unitname.add("Energy");
+                    unitname.add("Pressure");
+                    break;
+                case "3":
+                    unitname.add("American Revolution");
+                    unitname.add("French Revolution");
+                    unitname.add("British Revolution    ");
+                    break;
+            }*/
+
+            intent.putExtra("unitid", unitid);
+            view.getContext().startActivity(intent);
         }
     }
 }

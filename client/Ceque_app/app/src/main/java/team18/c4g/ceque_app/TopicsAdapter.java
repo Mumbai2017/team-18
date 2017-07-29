@@ -1,4 +1,4 @@
-package team18.c4g.ceque_app.retrofit_client;
+package team18.c4g.ceque_app;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,6 +9,9 @@ import android.view.ViewGroup;
  */
 
 public class TopicsAdapter extends RecyclerView.Adapter<TopicsAdapter.ViewHolder> {
+
+
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return null;
