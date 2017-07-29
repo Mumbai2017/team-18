@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="team18.jpmc.ceque_app">
 
-
-
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAPTURE_VIDEO_OUTPUT" />
@@ -13,7 +11,6 @@
     <uses-feature
         android:name="android.hardware.camera2"
         android:required="true" />
-
 
     <application
         android:allowBackup="true"
@@ -28,13 +25,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".PreviousDetails" />
-
         <activity android:name=".SelectSubjectActivity" />
         <activity android:name=".SelectTopic" />
-        <activity android:name=".SelectUnit"></activity>
-
+        <activity android:name=".SelectUnit" />
+        <activity android:name=".LVDetails"></activity>
     </application>
 
 </manifest>

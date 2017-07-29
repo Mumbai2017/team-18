@@ -6,7 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.MediaController;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,14 +18,6 @@ import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-
-public class MainActivity extends AppCompatActivity {
-
-    EditText n,p;
-    String username , password ;
-
-    public static final String ROOT_URL = "http://cfg.hphost.in/apis/";
-
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -34,6 +28,14 @@ import android.widget.MediaController;
 import android.widget.VideoView;
 
 public class MainActivity extends AppCompatActivity {
+
+    EditText n,p;
+    String username , password ;
+
+    public static final String ROOT_URL = "http://cfg.hphost.in/apis/";
+
+
+
     static final int REQUEST_VIDEO_CAPTURE = 1;
     private static final int PICK_FROM_GALLERY=1;
     VideoView videoresult;
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button b1 = (Button) findViewById(R.id.upload);
+     /*   Button b1 = (Button) findViewById(R.id.upload);
         Button b2 = (Button) findViewById(R.id.browse);
         videoresult = (VideoView) findViewById(R.id.videoupload);
         mediaC= new MediaController(this);
@@ -66,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(Intent.createChooser(intent, "Complete action using"),PICK_FROM_GALLERY);
             }
         })  ;
+
+        */
     }
 
     void fetchData1(){
@@ -160,8 +164,9 @@ public void videoviewer(){
                         //Displaying the output as a toast
                         Toast.makeText(MainActivity.this, output, Toast.LENGTH_LONG).show();
 
-                       // Intent in = new Intent(MainActivity.this,PreviousDetails.class);
-                       // startActivity(in);
+                        Intent in = new Intent(MainActivity.this,PreviousDetails.class);
+
+                        startActivity(in);
 
                     }
 
