@@ -1,6 +1,8 @@
 package team18..ceque_app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,11 +34,12 @@ public class PreviousDetails extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     public static final String ROOT_URL = "http://cfg.hphost.in/apis/";
-    List<LessonPlan> lessonList = new ArrayList<>();
-    public List<LessonPlan> list;
     private List<LessonPlan> person;
 
-    private ListView listView;
+
+  SharedPreferences sharedPreferences ;
+    SharedPreferences.Editor e;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,16 +85,22 @@ public class PreviousDetails extends AppCompatActivity {
     private void showList()
     {
         String detail = new String();
-        String[] items = new String[person.size()];
-        final TextView[] myTextViews = new TextView[person.size()]; // create an empty array;
+       sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        e = sharedPreferences.edit();
+        int i = 0;
+        String[] items = new String[person.size()]; // for id
+
         //Traversing through the whole list to get all the names
-        for(int i=0; i<person.size(); i++) {
+        for(i=0; i<person.size(); i++) {
             //Storing names to string array
             items[i] = String.valueOf(person.get(i).getId());
-            detail = detail + items[i];
+
             final Button b = new Button(this);
 
+            Toast.makeText(this," "+items[i],Toast.LENGTH_SHORT).show();
+
             b.setText("L E S S O N - P L A N:" + items[i]);
+            b.setId(i);
 
             LinearLayout ll = (LinearLayout) findViewById(R.id.activity_previous_details);
 
@@ -100,8 +109,14 @@ public class PreviousDetails extends AppCompatActivity {
             b.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent in = new Intent(PreviousDetails.this, LVDetails.class);
 
+                    int pos = b.getId();
+                    e.putString("id" , String.valueOf(pos));
+
+                    e.apply();
+
+
+                    Intent in = new Intent(PreviousDetails.this, LVDetails.class);
                     startActivity(in);
                 }
             });
