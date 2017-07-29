@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 29, 2017 at 11:22 AM
+-- Generation Time: Jul 29, 2017 at 11:38 AM
 -- Server version: 5.6.36-cll-lve
 -- PHP Version: 5.6.30
 
@@ -95,6 +95,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
   `phone_no` int(11) NOT NULL,
+  `type` int(11) NOT NULL,
   `loc_lat` double NOT NULL,
   `loc_lang` double NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
