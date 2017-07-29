@@ -4,7 +4,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import team18..ceque_app.retrofit_model.AllSubject;
+import team18..ceque_app.retrofit_model.Subjects;
 
 /
  * Created by Soundwave on 29-Jul-17.
@@ -13,6 +13,9 @@ import team18..ceque_app.retrofit_model.AllSubject;
 public interface ApiInterface {
 
     @GET("getAllSubjects.php")
-    Call<List<AllSubject>> getAllSubjects();
+    Call<List<Subjects>> getAllSubjects();
+
+    @GET("https://learnwebcode.github.io/json-example/animals-1.json")
+    Call<List<Example>> getAnimals();
 
 }
