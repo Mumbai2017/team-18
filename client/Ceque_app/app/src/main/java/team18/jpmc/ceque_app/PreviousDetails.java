@@ -1,5 +1,6 @@
 package team18.jpmc.ceque_app;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,8 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +24,7 @@ import java.util.List;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class PreviousDetails extends AppCompatActivity {
 
@@ -29,105 +36,87 @@ public class PreviousDetails extends AppCompatActivity {
     public List<LessonPlan> list;
     private List<LessonPlan> person;
 
+    private ListView listView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_previous_details);
 
         getUser(); // get the lesson plan first
+      //  listView.setOnItemClickListener(PreviousDetails.this);
+
+
 
 
     }
 
 
     private void getUser() {
+        //Creating a rest adapter
         RestAdapter adapter = new RestAdapter.Builder()
                 .setEndpoint(ROOT_URL)
                 .build();
-        Toast.makeText(PreviousDetails.this, "GET WORKING1", Toast.LENGTH_LONG).show();
+
+        //Creating an object of our api interface
         GetApi api = adapter.create(GetApi.class);
-        Toast.makeText(PreviousDetails.this, "GET WORKING2", Toast.LENGTH_LONG).show();
+
+        //Defining the method
         api.getUser(new Callback<List<LessonPlan>>() {
 
             @Override
-            public void success(List<LessonPlan> persons, retrofit.client.Response response) {
-//Storing the data in our list
-                list = persons;
-                Toast.makeText(PreviousDetails.this, "GET WORKING", Toast.LENGTH_LONG).show();
-                //Calling a method to show the list
-                setLayout();
+            public void success(List<LessonPlan> lessonPlen, Response response) {
+
+                person = lessonPlen;
+                showList();
             }
 
             @Override
             public void failure(RetrofitError error) {
 
-                Toast.makeText(PreviousDetails.this, " " + error.toString(), Toast.LENGTH_LONG).show();
             }
         });
 
     }
 
-    private void setLayout()
+    private void showList()
     {
-
         String detail = new String();
-int j=0;
-        //String array to store all the book names
         String[] items = new String[person.size()];
-
+        final TextView[] myTextViews = new TextView[person.size()]; // create an empty array;
         //Traversing through the whole list to get all the names
         for(int i=0; i<person.size(); i++){
             //Storing names to string array
-             j = person.get(i).getId();
+            items[i] = String.valueOf(person.get(i).getId());
             detail = detail + items[i];
+            final Button b = new Button(this);
+
+           b.setText("L E S S O N - P L A N:" + items[i]);
+
+            LinearLayout ll = (LinearLayout)findViewById(R.id.activity_previous_details);
+
+            ll.addView(b);
+
         }
-      Toast.makeText(PreviousDetails.this," "+j,Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(PreviousDetails.this," "+detail,Toast.LENGTH_SHORT).show();
 
 
     }
+
 }
 
 
 
 
+
+
+
+
+
+
 /*
-    public void setLayout()
-    {
-        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view); // WORKING FOR RECYLCER VIEW , SETTING LAYOUT
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
 
-        mAdapter = new MyAdapter(lessonList);
-        mRecyclerView.setAdapter(mAdapter);
-
-         // retrieve values from database for lesson plans
-
-        String detail = new String();
-
-        //String array to store all the book names
-        String[] items = new String[list.size()];
-
-        //Traversing through the whole list to get all the names
-        for(int i=0; i<list.size(); i++){
-            //Storing names to string array
-            //items[i] = String.valueOf(j);
-            //detail = detail + items[i];
-
-            int j = list.get(i).getId();
-
-            LessonPlan lessonPlan = new LessonPlan(j); // for time-being, setting default values
-            lessonList.add(lessonPlan);
-        }
-
-
-
-
-
-    }
-
-
-}
-/*
 
 class MyAdapter  extends RecyclerView.Adapter<MyAdapter.ViewHolder>
 {
@@ -178,5 +167,7 @@ class MyAdapter  extends RecyclerView.Adapter<MyAdapter.ViewHolder>
     public int getItemCount() {
         return questionList.size();
     }
+
+
 }
 */
