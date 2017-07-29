@@ -1,8 +1,7 @@
 <?php
  
 $url = 'http://www.bitocr.com/api';
-$user_url = 'http://www.bitocr.com/images/ocrtest.jpg'
-$fields = array('url' => '$user_url', 'apikey' => '184108e25758d07e', 'lang' => 'eng');
+$fields = array('url' => 'http://tech-fork.000webhostapp.com/images/sampleocr3.jpg', 'apikey' => '184108e25758d07e', 'lang' => 'eng');
 $resource = curl_init();
 curl_setopt($resource, CURLOPT_URL, $url);
 curl_setopt($resource, CURLOPT_RETURNTRANSFER, 1);

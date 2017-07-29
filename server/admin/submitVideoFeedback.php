@@ -3,7 +3,8 @@ require '../functions.php';
 require '../config.php';
 session_start();
 $conn = mysqli_connect($dbConfig['dbhost'],$dbConfig['dbuser'],$dbConfig['dbpass'],$dbConfig['dbname']);
-    
+   
+$id = 0; 
 if(isset($_GET['lp'])) {
     $id = filter_input(INPUT_GET, "lp", FILTER_SANITIZE_STRING);
 }
@@ -16,7 +17,6 @@ if(isset($_POST['desc'])) {
     $msg = filter_input(INPUT_POST, "desc", FILTER_SANITIZE_STRING);
     $timepoint = filter_input(INPUT_POST, "timepoint", FILTER_SANITIZE_STRING);
     $sql = "INSERT INTO feedback (type,t_id,msg,timepoint,timestamp,s_type) VALUES (2,".$id.",'".$msg."',".$timepoint.",'".time()."',".$_SESSION['type'].")";
-    $conn = mysqli_connect($dbConfig['dbhost'],$dbConfig['dbuser'],$dbConfig['dbpass'],$dbConfig['dbname']);
     if ($conn->query($sql) === TRUE) {
         header('location: submitVideoFeedback.php?lp='.$id.'&success=Feedback Submitted Successfully');
         exit();
@@ -27,7 +27,7 @@ if(isset($_POST['desc'])) {
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>CGF Admin</title>
+        <title>CFG Admin</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="../css/styles.css">
@@ -67,7 +67,7 @@ if(isset($_POST['desc'])) {
                     player = new YT.Player('player', {
                         height: '390',
                         width: '640',
-                        videoId: 'M7lc1UVf-VE',
+                        videoId: '<?php echo getYoutubeURL($conn, $id); ?>',
                         events: {
                             'onReady': onPlayerReady,
                             'onStateChange': onPlayerStateChange
@@ -113,6 +113,7 @@ if(isset($_POST['desc'])) {
         <script>
         function addYoutube() {
             document.getElementById('timepoint').value = player.getCurrentTime();
+            player.pauseVideo();
         }
         </script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

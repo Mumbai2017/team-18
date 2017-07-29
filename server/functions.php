@@ -71,11 +71,18 @@ function getUnitID($conn, $t_id) {
 
 function checkScore($conn, $id, $type) {
     if ($type==1) {
-        $query = "SELECT score FROM lession_plans WHERE id=".$id;
+        $query = "SELECT score FROM lesson_plan WHERE id=".$id;
     } else {
         $query = "SELECT score FROM videos WHERE id=".$id;
     }
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($result);
     return $row['score'];
+}
+
+function getYoutubeURL($conn, $id) {
+    $query = "SELECT youtube_id FROM videos WHERE id=".$id;
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+    return $row['youtube_id'];
 }
