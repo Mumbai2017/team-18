@@ -15,6 +15,7 @@ import retrofit2.Retrofit;
 import team18.c4g.ceque_app.retrofit_client.ApiClient;
 import team18.c4g.ceque_app.retrofit_client.ApiInterface;
 import team18.c4g.ceque_app.retrofit_model.AllSubject;
+import team18.c4g.ceque_app.retrofit_model.Subjects;
 
 public class SelectSubjectActivity extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -39,21 +40,22 @@ public class SelectSubjectActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-        Call<List<AllSubject>> res = apiInterface.getAllSubjects();
+        Call<List<Subjects>> res = apiInterface.getAllSubjects();
         Toast.makeText(this, "Doing call", Toast.LENGTH_SHORT).show();
-        res.enqueue(new Callback<List<AllSubject>>() {
+
+        res.enqueue(new Callback<List<Subjects>>() {
             @Override
-            public void onResponse(Call<List<AllSubject>> call, Response<List<AllSubject>> response) {
+            public void onResponse(Call<List<Subjects>> call, Response<List<Subjects>> response) {
                 Toast.makeText(getApplicationContext(), "Call success", Toast.LENGTH_SHORT).show();
                 subjectAdapter = new SubjectAdapter(response.body());
                 recyclerView.setAdapter(subjectAdapter);
             }
 
             @Override
-            public void onFailure(Call<List<AllSubject>> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Failed:" + t.getMessage()  , Toast.LENGTH_LONG).show();
+            public void onFailure(Call<List<Subjects>> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Failed:" + t.getMessage(), Toast.LENGTH_LONG).show();
             }
-        });
+        }); 
 
     }
 }
