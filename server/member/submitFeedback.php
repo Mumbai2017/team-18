@@ -1,24 +1,21 @@
-<?php 
-require '../functions.php';
-require '../config.php';
+<?php
+require_once '../config.php';
 session_start();
-if(isset($_GET['lp'])) {
-    $id = filter_input(INPUT_GET, "lp", FILTER_SANITIZE_STRING);
-}
-if(checkAdmin() && checkReviewer()) {
-    header("location: index.php?error=Not Authorised");
-    exit();
-}   
-if(isset($_POST['desc'])) {
-    $id = filter_input(INPUT_POST, "id", FILTER_SANITIZE_STRING);
-    $msg = filter_input(INPUT_POST, "desc", FILTER_SANITIZE_STRING);
-    $sql = "INSERT INTO feedback (type,t_id,msg,timestamp,s_type) VALUES (1,".$id.",'".$msg."','".time()."',".$_SESSION['type'].")";
-    $conn = mysqli_connect($dbConfig['dbhost'],$dbConfig['dbuser'],$dbConfig['dbpass'],$dbConfig['dbname']);
+
+$conn = mysqli_connect($dbConfig['dbhost'],$dbConfig['dbuser'],$dbConfig['dbpass'],$dbConfig['dbname']);
+
+if(isset($_POST['message'])) {
+    $type = filter_input(INPUT_POST, "type", FILTER_SANITIZE_STRING);
+    $t_id = filter_input(INPUT_POST, "t_id", FILTER_SANITIZE_STRING);
+    $msg = filter_input(INPUT_POST, "message", FILTER_SANITIZE_STRING);
+    
+    $sql = "INSERT INTO feedback (type,t_id,msg,timestamp,s_type) VALUES (".$type.",".$t_id.",'".$msg."','".time()."',".$_SESSION['type'].")";
     if ($conn->query($sql) === TRUE) {
-        header('location: submitFeedback.php?lp='.$id.'&success=Feedback Submitted Successfully');
+        header('location: viewFeedback.php?lp='.$t_id.'&success=Feedback Submitted Successfully');
         exit();
     }
 }
+<<<<<<< HEAD
 ?>
 <!DOCTYPE html>
 <html>
@@ -68,3 +65,5 @@ if(isset($_POST['desc'])) {
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </body>
 </html>
+=======
+>>>>>>> 782e2e301fe8003899440e430402bdc128386688

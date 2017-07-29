@@ -2,11 +2,7 @@
 require '../functions.php';
 require_once '../config.php';
 session_start();
-<<<<<<< HEAD
-if(checkAdmin() && checkReviewer()) {
-=======
 if(!checkLogin()) {
->>>>>>> 782e2e301fe8003899440e430402bdc128386688
     header("location: ../index.php?error=Not Authorised");
     exit();
 }
@@ -14,11 +10,7 @@ $feedBackGiven = "";
 $conn = mysqli_connect($dbConfig['dbhost'],$dbConfig['dbuser'],$dbConfig['dbpass'],$dbConfig['dbname']);
 $id = filter_input(INPUT_GET, "lp", FILTER_SANITIZE_STRING);
 if ( $id != "" ) {
-<<<<<<< HEAD
-    $sql = "SELECT * FROM `lesson_plan` WHERE id=".$id;
-=======
     $sql = "SELECT * FROM `lesson_plan` WHERE id=".$id." AND user_id = ".$_SESSION['user_id'];
->>>>>>> 782e2e301fe8003899440e430402bdc128386688
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
@@ -36,26 +28,31 @@ if ( $id != "" ) {
             $sub_name = getSubjectName($conn, $s_id);
             $feedBackGiven = '<div class="listLPShow showData">
                         <div class="header">'.date("d/m/Y H:i:s", $timestamp).'</div>
-<<<<<<< HEAD
-                        <div class="body">
-                            <div class="desc">'.$description.'</div>
-                            <div class="otherData">Topic Name : '.$topic_name.'<br>Unit Name : '.$unit_name.'<br>Subject Name : '.$sub_name.'</div>
-                        </div>
-                        <div class="footer">
-                            Score : '.$score.'
-                        </div>
-                    </div><br>';
-=======
                         <div style="border-bottom-left-radius: 5px; border-bottom-left-radius: 5px;" class="body">
                             <div class="desc">'.$description.'</div>
                             <div class="otherData">Topic Name : '.$topic_name.'<br>Unit Name : '.$unit_name.'<br>Subject Name : '.$sub_name.'</div>
                         </div>
                     </div><br>';
             
->>>>>>> 782e2e301fe8003899440e430402bdc128386688
-           
+            
+            
         }
     }
+    $feedBackGiven .= '<div class="feedbacks"><br><h4>Feedbacks</h4><br>';
+    $sql = "SELECT * FROM `feedback` WHERE t_id=".$id." AND type = 1 ORDER BY timestamp";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $t_id = $row['t_id'];
+            $type = $row['type'];
+            if($row['s_type'] == 1) {
+                $feedBackGiven .= '<div style="float: right; background: activecaption;" class="message">'.$row['msg'].'</div>';
+            } else {
+                $feedBackGiven .= '<div style="float: left; background: bisque;" class="message">'.$row['msg'].'</div>';
+            }
+        }
+    }
+    $feedBackGiven .= '</div>';
 }
 
 ?>
@@ -63,11 +60,7 @@ if ( $id != "" ) {
 <html>
     <head>
         <meta charset="UTF-8">
-<<<<<<< HEAD
-        <title>CGF Admin</title>
-=======
         <title>CGF Member</title>
->>>>>>> 782e2e301fe8003899440e430402bdc128386688
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="../css/styles.css">
@@ -83,6 +76,13 @@ if ( $id != "" ) {
                 <?php 
                     echo $feedBackGiven;
                  ?>
+                <br><br>
+                <form method="post" action="submitFeedback.php">
+                    <input type="hidden" name="type" value="<?php echo $type; ?>">
+                    <input type="hidden" name="t_id" value="<?php echo $t_id; ?>">
+                    <input type="text" name="message" placeholder="Reply to Feedback">
+                    <input type="submit" value="Submit your Response">
+                </form>
             </div>
         </div>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

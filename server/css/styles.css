@@ -163,3 +163,16 @@ input[type="submit"] {
     max-width: 100%;
     height: auto;
 }
+
+.feedbacks {
+    width: 100%;
+}
+
+.feedbacks .message {
+    width: 80%;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 21px;
+    font-weight: 300;
+}
