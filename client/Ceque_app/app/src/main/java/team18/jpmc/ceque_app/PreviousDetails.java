@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,34 +26,34 @@ public class PreviousDetails extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     public static final String ROOT_URL = "http://cfg.hphost.in/apis/";
     List<LessonPlan> lessonList = new ArrayList<>();
-    private List<LessonPlan> list;
+    public List<LessonPlan> list;
+    private List<LessonPlan> person;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_previous_details);
 
-        getLP(); // get the lesson plan first
+        getUser(); // get the lesson plan first
 
 
     }
 
 
-    private void getLP()
-    {
+    private void getUser() {
         RestAdapter adapter = new RestAdapter.Builder()
                 .setEndpoint(ROOT_URL)
                 .build();
-
+        Toast.makeText(PreviousDetails.this, "GET WORKING1", Toast.LENGTH_LONG).show();
         GetApi api = adapter.create(GetApi.class);
-
+        Toast.makeText(PreviousDetails.this, "GET WORKING2", Toast.LENGTH_LONG).show();
         api.getUser(new Callback<List<LessonPlan>>() {
 
             @Override
             public void success(List<LessonPlan> persons, retrofit.client.Response response) {
 //Storing the data in our list
-                list= persons;
-
+                list = persons;
+                Toast.makeText(PreviousDetails.this, "GET WORKING", Toast.LENGTH_LONG).show();
                 //Calling a method to show the list
                 setLayout();
             }
@@ -60,12 +61,36 @@ public class PreviousDetails extends AppCompatActivity {
             @Override
             public void failure(RetrofitError error) {
 
+                Toast.makeText(PreviousDetails.this, " " + error.toString(), Toast.LENGTH_LONG).show();
             }
         });
 
     }
 
+    private void setLayout()
+    {
 
+        String detail = new String();
+int j=0;
+        //String array to store all the book names
+        String[] items = new String[person.size()];
+
+        //Traversing through the whole list to get all the names
+        for(int i=0; i<person.size(); i++){
+            //Storing names to string array
+             j = person.get(i).getId();
+            detail = detail + items[i];
+        }
+      Toast.makeText(PreviousDetails.this," "+j,Toast.LENGTH_SHORT).show();
+
+
+    }
+}
+
+
+
+
+/*
     public void setLayout()
     {
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view); // WORKING FOR RECYLCER VIEW , SETTING LAYOUT
@@ -102,6 +127,7 @@ public class PreviousDetails extends AppCompatActivity {
 
 
 }
+/*
 
 class MyAdapter  extends RecyclerView.Adapter<MyAdapter.ViewHolder>
 {
@@ -153,3 +179,4 @@ class MyAdapter  extends RecyclerView.Adapter<MyAdapter.ViewHolder>
         return questionList.size();
     }
 }
+*/
