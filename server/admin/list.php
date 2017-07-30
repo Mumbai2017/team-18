@@ -30,7 +30,7 @@ if ( $action == "lp") {
             $sub_name = getSubjectName($conn, $s_id);
             if(checkFeedbackSubmit($conn, $id, 1)) {
                 $feedBackGiven .= '<div class="listLPShow showData">
-                        <div class="header">'.date("d/m/Y H:i:s", $timestamp).'</div>
+                        <div class="header">'.getUsername($conn, $user_id).' - '.date("d/m/Y H:i:s", $timestamp).'</div>
                         <div class="body">
                             <div class="img"><a href="'.$imageUrl.'" target="_blank"><img src="'.$imageUrl.'"></a></div>
                             <div class="desc">'.$description.'</div>
@@ -43,7 +43,7 @@ if ( $action == "lp") {
                     </div><br>';
             } else {
                 $feedBackNotGiven .= '<div class="listLPShow showData">
-                        <div class="header">'.date("d/m/Y H:i:s", $timestamp).'</div>
+                        <div class="header">'.getUsername($conn, $user_id).' - '.date("d/m/Y H:i:s", $timestamp).'</div>
                         <div class="body">
                             <div class="desc">'.$description.'</div>
                             <div class="otherData">Topic Name : '.$topic_name.'<br>Unit Name : '.$unit_name.'<br>Subject Name : '.$sub_name.'</div>
@@ -78,13 +78,14 @@ if ( $action == "lp") {
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
             $id = $row['id'];       
+            $user_id = $row['user_id'];
             $youtube = $row['youtube_id'];
             $timestamp = $row['timestamp'];
             $lp = $row['lp_id'];       
             $score = $row['score'];
             if(checkFeedbackSubmit($conn, $id, 2)) {
                 $feedBackGiven .= '<div class="listLPShow showData">
-                        <div class="header">'.date("d/m/Y H:i:s", $timestamp).'</div>
+                        <div class="header">'.getUsername($conn, $user_id).' - '.date("d/m/Y H:i:s", $timestamp).'</div>
                         <div class="body">
                             <div class="desc"><iframe src="https://www.youtube.com/embed/'.$youtube.'" frameborder="0" allowfullscreen></iframe></div>
                             <div class="otherData"><a href="view.php?lp='.$lp.'"><div class="viewLessionPlanBtn">View Lession Plan</div></a></div>
@@ -96,7 +97,7 @@ if ( $action == "lp") {
                     </div><br>';
             } else {
                 $feedBackNotGiven .= '<div class="listLPShow showData">
-                        <div class="header">'.date("d/m/Y H:i:s", $timestamp).'</div>
+                        <div class="header">'.getUsername($conn, $user_id).' - '.date("d/m/Y H:i:s", $timestamp).'</div>
                         <div class="body">
                             <div class="desc"><iframe src="https://www.youtube.com/embed/'.$youtube.'" frameborder="0" allowfullscreen></iframe></div>
                             <div class="otherData"><a href="view.php?lp='.$lp.'"><div class="viewLessionPlanBtn">View Lession Plan</div></a></div>
@@ -155,6 +156,6 @@ if ( $action == "lp") {
                 <?php } ?>
             </div>
         </div>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> <div id="google_translate_element"></div> <script type="text/javascript"> function googleTranslateElementInit() { new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element'); } </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     </body>
 </html>

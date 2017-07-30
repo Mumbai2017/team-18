@@ -112,40 +112,40 @@ input[type="submit"] {
 
 .showData .header {
     padding: 10px 20px;
-    background: #E80CE3;
+    background: #0991e8;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    border: 1px solid #E80CE3;
+    border: 1px solid #0991e8;
     color: #fff;
 }
 
 .showData .body {
     padding: 10px 20px;
-    background: #800DFF;
-    border: 1px solid #800DFF;
+    background: #7ecafb;
+    border: 1px solid #7ecafb;
     color: #fff;
 }
 
 .showData .footer {
     padding: 10px 20px;
-    background: #E80CE3;
+    background: #0991e8;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    border: 1px solid #E80CE3;
+    border: 1px solid #0991e8;
     color: #fff;
 }
 
 .showData .submitFeedbackBtn {
-    background: #5603b1;
-    border: 1px solid #5603b1;
-    color: #fff;
+    background: #ffffff;
+    border: 1px solid #ffffff;
+    color: #0991e8;
     padding: 10px 20px;
     border-radius: 5px;
 }
 
 .showData .viewLessionPlanBtn {
-    background: #E80CE3;
-    border: 1px solid #E80CE3;
+    background: #0991e8;
+    border: 1px solid #0991e8;
     color: #fff;
     padding: 10px 20px;
     border-radius: 5px;

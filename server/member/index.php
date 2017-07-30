@@ -46,16 +46,16 @@ if (!checkLogin()) {
                 }
             }
             ?>
-                <a href="list.php?action=lp"><div class="lpButton listbtn">List My Lesson Plans</div></a>
-                <a href="list.php?action=videos"><div class="videoButton listbtn">List My Videos</div></a>
+                <a href="list.php?action=lp"><div class="lpButton listbtn">My Lesson Plans</div></a>
+                <a href="list.php?action=videos"><div class="videoButton listbtn">My Videos</div></a>
                 <br>
                 <h3>Stats</h3>
                 <br>
                 <div class="statsLeft">Submitted Videos </div><div class="statsRight"><?php echo getNumberOfVideos($conn, $_SESSION['user_id']); ?></div>
                 <div class="clearfix"></div><br>
-                <div class="statsLeft">Submitted Plans  </div><div class="statsRight"><?php echo getNumberOfLP($conn, $_SESSION['user_id']); ?></div>
+                <div class="statsLeft">Submitted Lesson Plans  </div><div class="statsRight"><?php echo getNumberOfLP($conn, $_SESSION['user_id']); ?></div>
             </div>
         </div>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> <div id="google_translate_element"></div> <script type="text/javascript"> function googleTranslateElementInit() { new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element'); } </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     </body>
 </html>

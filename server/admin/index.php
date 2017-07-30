@@ -47,10 +47,10 @@ if (!checkLogin()) {
                 <?php if ( $_SESSION['type'] == 7 ) { ?>
                 <a href="list.php?action=teachers"><div class="teachersButton listbtn">List Teachers</div></a>
                 <?php } ?>
-                <a href="list.php?action=lp"><div class="lpButton listbtn">List Lesson Plans</div></a>
-                <a href="list.php?action=videos"><div class="videoButton listbtn">List Videos</div></a>
+                <a href="list.php?action=lp"><div class="lpButton listbtn">Review Lesson Plans</div></a>
+                <a href="list.php?action=videos"><div class="videoButton listbtn">Review Videos</div></a>
             </div>
         </div>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> <div id="google_translate_element"></div> <script type="text/javascript"> function googleTranslateElementInit() { new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element'); } </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     </body>
 </html>

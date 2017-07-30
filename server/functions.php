@@ -34,6 +34,13 @@ function checkFeedbackSubmit($conn, $lp_id, $type) {
     }
 }
 
+function getUsername($conn, $t_id) {
+    $query = "SELECT username FROM users WHERE id=".$t_id;
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+    return $row['username'];
+}
+
 function getTopicName($conn, $t_id) {
     $query = "SELECT topic_name FROM topic WHERE id=".$t_id;
     $result = mysqli_query($conn, $query);
