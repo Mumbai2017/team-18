@@ -25,9 +25,10 @@
         android:id="@+id/upload"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:text="SUBMIT"
+        android:text="UPLOAD"
         android:layout_weight="0.20"
         android:layout_marginTop="11dp"
+        android:background="@color/colorPrimaryDark"
         android:layout_alignTop="@+id/capture"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -40,7 +41,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:onClick="videoviewer()"
-        android:text="UPLOAD"
+        android:background="@color/colorPrimaryDark"
+        android:text="CAPTURE"
         tools:layout_editor_absoluteX="251dp"
         tools:layout_editor_absoluteY="423dp"
         android:layout_weight="0.29" />
