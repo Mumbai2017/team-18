@@ -11,48 +11,47 @@ import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
-public class MainActivity extends AppCompatActivity {
+public class VideoActivity extends AppCompatActivity {
     static final int REQUEST_VIDEO_CAPTURE = 1;
-    private static final int PICK_FROM_GALLERY=1;
-    private static final String TAG = MainActivity.class.getSimpleName();;
+    private static final int PICK_FROM_GALLERY = 1;
+    private static final String TAG = VideoActivity.class.getSimpleName();
+    ;
     VideoView videoresult;
     MediaController mediaC;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button b1 = (Button) findViewById(R.id.upload);
-        Button b2 = (Button) findViewById(R.id.browse);
-        Button b3 = (Button) findViewById(R.id.submit);
+        setContentView(R.layout.activity_video);
+        Button b1 = (Button) findViewById(R.id.capture);
+        Button b2 = (Button) findViewById(R.id.upload);
         videoresult = (VideoView) findViewById(R.id.videoupload);
-        mediaC= new MediaController(this);
-        
+        mediaC = new MediaController(this);
+
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { //Calls the function to start recording videos when button is clicked.
                 videoviewer();
             }
-    });
+        });
         b2.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 Intent intent = new Intent();
 
-                intent.setType("video/*");
+               /* intent.setType("video/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
 
-                startActivityForResult(Intent.createChooser(intent, "Complete action using"),PICK_FROM_GALLERY);
+                startActivityForResult(Intent.createChooser(intent, "Complete action using"),PICK_FROM_GALLERY);*/
             }
-        })  ;
+        });
 
     }
 
 
-
-public void videoviewer(){
+    public void videoviewer() {
         {
             Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
             if (takeVideoIntent.resolveActivity(this.getPackageManager()) != null) {
@@ -61,6 +60,7 @@ public void videoviewer(){
         }
 
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
@@ -82,11 +82,5 @@ public void videoviewer(){
 
         }
 
-    }
-
-
-    public void onClickSelectTopic(View view) {
-        Intent intent = new Intent(this, SelectSubjectActivity.class);
-        startActivity(intent);
     }
 }
