@@ -1,7 +1,6 @@
 package team18.c4g.finalceque;
 
 
-        import android.app.Dialog;
         import android.content.ActivityNotFoundException;
         import android.content.ComponentName;
         import android.content.Context;
@@ -10,14 +9,8 @@ package team18.c4g.finalceque;
         import android.os.Bundle;
         import android.support.v7.widget.LinearLayoutManager;
         import android.support.v7.widget.RecyclerView;
-        import android.text.Editable;
-        import android.text.TextWatcher;
         import android.util.Log;
-        import android.view.MotionEvent;
         import android.view.View;
-        import android.view.Window;
-        import android.webkit.WebView;
-        import android.webkit.WebViewClient;
         import android.widget.Button;
         import android.widget.EditText;
         import android.widget.Toast;
@@ -28,7 +21,6 @@ package team18.c4g.finalceque;
         import com.android.volley.Response;
         import com.android.volley.VolleyError;
         import com.android.volley.toolbox.JsonObjectRequest;
-        import com.android.volley.toolbox.StringRequest;
         import com.android.volley.toolbox.Volley;
         import com.google.android.youtube.player.YouTubeBaseActivity;
         import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -40,7 +32,6 @@ package team18.c4g.finalceque;
         import org.json.JSONException;
         import org.json.JSONObject;
 
-        import java.lang.reflect.Array;
         import java.util.ArrayList;
         import java.util.HashMap;
         import java.util.Map;
@@ -60,7 +51,7 @@ public class AnnotationsActivity extends YouTubeBaseActivity implements YouTubeP
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_annotations);
         context = this;
         playerStateChangeListener = new MyPlayerStateChangeListener();
         playbackEventListener = new MyPlaybackEventListener();
@@ -111,7 +102,7 @@ public class AnnotationsActivity extends YouTubeBaseActivity implements YouTubeP
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Toast.makeText(context,response.toString(),Toast.LENGTH_LONG).show();
+                       // Toast.makeText(context,response.toString(),Toast.LENGTH_LONG).show();
                         Log.d("today",response.toString());
                         parseJson(response);
                         adapter.update();

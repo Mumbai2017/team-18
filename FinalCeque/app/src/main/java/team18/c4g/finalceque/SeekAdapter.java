@@ -47,7 +47,7 @@ public class SeekAdapter extends RecyclerView.Adapter<SeekAdapter.MyViewHolder> 
         /*holder.b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new MainActivity().seek(seek_values());
+                new UploadImageOrVideo().seek(seek_values());
             }
         });*/
         //Log.d("result","null"+position);
