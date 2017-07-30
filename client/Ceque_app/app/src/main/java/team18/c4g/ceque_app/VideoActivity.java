@@ -37,7 +37,7 @@ public class VideoActivity extends AppCompatActivity {
         });
         b2.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View v) {
+            public void onClick(View v) { // Calls the WebView
                 // TODO Auto-generated method stub
                 Intent intent = new Intent();
 
@@ -70,17 +70,8 @@ public class VideoActivity extends AppCompatActivity {
             mediaC.setAnchorView(videoresult);
             videoresult.start();
 
-            if (resultCode != RESULT_OK) return;
-
-            if (requestCode == PICK_FROM_GALLERY) {
-                Uri mVideoURI = data.getData();
-                videoresult.setVideoURI(mVideoURI);
-                videoresult.setMediaController(mediaC);
-                mediaC.setAnchorView(videoresult);
-                videoresult.start();
             }
 
         }
 
     }
-}
