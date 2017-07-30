@@ -35,6 +35,7 @@ public class PreviousDetails extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     public static final String ROOT_URL = "http://cfg.hphost.in/apis/";
     private List<LessonPlan> person;
+    private List<Video> person2;
 
 
   SharedPreferences sharedPreferences ;
@@ -48,9 +49,7 @@ public class PreviousDetails extends AppCompatActivity {
 
         getUser(); // get the lesson plan first
       //  listView.setOnItemClickListener(PreviousDetails.this);
-
-
-
+        getVideo();
 
     }
 
@@ -82,43 +81,102 @@ public class PreviousDetails extends AppCompatActivity {
 
     }
 
+
+    private void getVideo() {
+        //Creating a rest adapter
+        RestAdapter adapter = new RestAdapter.Builder()
+                .setEndpoint(ROOT_URL)
+                .build();
+
+        //Creating an object of our api interface
+        GetApiVideo api = adapter.create(GetApiVideo.class);
+
+        //Defining the method
+        api.getVideo(new Callback<List<Video>>() {
+
+            @Override
+            public void success(List<Video> lessonPlen, Response response) {
+
+                person2 = lessonPlen;
+                 showList2();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+
+            }
+        });
+
+    }
     private void showList()
     {
         String detail = new String();
        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         e = sharedPreferences.edit();
         int i = 0;
-        String[] items = new String[person.size()]; // for id
 
-        //Traversing through the whole list to get all the names
-        for(i=0; i<person.size(); i++) {
+            String[] items = new String[person.size()]; // for id
 
-            items[i] = String.valueOf(person.get(i).getId());
-            final Button b = new Button(this);
-            b.setText("L E S S O N - P L A N:" + items[i]);
-            b.setId(i);
+            //Traversing through the whole list to get all the names
+            for (i = 0; i < person.size(); i++) {
 
-            LinearLayout ll = (LinearLayout) findViewById(R.id.activity_previous_details);
-            ll.addView(b);
+                items[i] = String.valueOf(person.get(i).getId());
+                final Button b = new Button(this);
+                b.setText("L E S S O N - P L A N:" + items[i]);
+                b.setId(i);
 
-            b.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+                LinearLayout ll1 = (LinearLayout) findViewById(R.id.activity_previous_details);
+                ll1.addView(b);
 
-                    int pos = b.getId();
-                    e.putString("id" , String.valueOf(pos));
-                    e.apply();
-                    Intent in = new Intent(PreviousDetails.this, LVDetails.class);
-                    startActivity(in);
-                }
-            });
+                b.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        int pos = b.getId();
+                        e.putString("id", String.valueOf(pos));
+                        e.putInt("type",0);
+                        e.apply();
+                        Intent in = new Intent(PreviousDetails.this, LVDetails.class);
+                        startActivity(in);
+                    }
+                });
+
+            }
+        }
+
+    private void showList2()
+        {
+            int i = 0;
+            String[] items = new String[person2.size()]; // for id
+            for (i = 0; i < person2.size(); i++) {
+
+                items[i] = String.valueOf(person2.get(i).getId());
+               final Button b2 = new Button(this);
+                b2.setText("V I D E O S:" + items[i]);
+                b2.setId(i);
+
+                LinearLayout ll2 = (LinearLayout) findViewById(R.id.activity_previous_details);
+                ll2.addView(b2);
+
+                b2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        int pos = b2.getId();
+                        e.putString("id", String.valueOf(pos));
+                        e.putInt("type",1);
+                        e.apply();
+                        Intent in = new Intent(PreviousDetails.this, LVDetails.class);
+                        startActivity(in);
+                    }
+                });
+
+            }
 
         }
 
 
 
-
-    }
 
 }
 

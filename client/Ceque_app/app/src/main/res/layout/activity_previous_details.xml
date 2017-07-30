@@ -11,4 +11,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="team18.jpmc.ceque_app.PreviousDetails">
 
+
+
 </LinearLayout>
