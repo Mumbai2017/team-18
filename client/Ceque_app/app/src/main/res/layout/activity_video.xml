@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="team18.c4g.ceque_app.VideoActivity"
+    android:background="@color/colorBlack"
+    android:weightSum="1">
+
+    <VideoView
+        android:id="@+id/videoupload"
+        android:layout_width="390dp"
+        android:layout_height="200dp"
+        tools:layout_editor_absoluteY="0dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/upload"
+        android:layout_weight="0.70"
+        android:layout_alignParentTop="true" />
+
+
+    <Button
+        android:id="@+id/upload"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:text="UPLOAD"
+        android:layout_weight="0.20"
+        android:layout_marginTop="11dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_alignTop="@+id/capture"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/capture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:onClick="videoviewer()"
+        android:background="@color/colorPrimaryDark"
+        android:text="CAPTURE"
+        tools:layout_editor_absoluteX="251dp"
+        tools:layout_editor_absoluteY="423dp"
+        android:layout_weight="0.29" />
+
+
+</RelativeLayout>
